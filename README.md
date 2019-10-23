@@ -18,8 +18,10 @@ applications:
     charm: cs:~containers/openstack-integrator
     num_units: 1
 relations:
-  - ['openstack-integrator', 'kubernetes-master']
-  - ['openstack-integrator', 'kubernetes-worker']
+  - ['kubernetes-master:kube-api-endpoint','kubernetes-worker:kube-api-endpoint']
+  - ['openstack-integrator', 'kubernetes-master:loadbalancer']
+  - ['openstack-integrator', 'kubernetes-master:openstack']
+  - ['openstack-integrator', 'kubernetes-worker:openstack']
 ```
 
 Using Juju 2.4-beta1 or later:
